@@ -1,6 +1,7 @@
 package ro.pata.jpa.eni;
 
-import ro.pata.jpa.eni.entity.AgendaEntity;
+import ro.pata.jpa.eni.entity_test.AgendaDetailEntity;
+import ro.pata.jpa.eni.entity_test.AgendaEntity;
 import ro.pata.jpa.eni.entity.PersonneDetailEntity;
 import ro.pata.jpa.eni.entity.PersonneEntity;
 
@@ -31,9 +32,15 @@ public class App
         EntityManager em=emf.createEntityManager();
 
         em.getTransaction().begin();
+
+        AgendaDetailEntity detail=new AgendaDetailEntity();
+        detail.setAddress("Cotoi");
+        em.persist(detail);
+
         AgendaEntity person=new AgendaEntity();
         person.setNume("Cucurel");
         person.setTelefon("567");
+        person.setDetail(detail);
         em.persist(person);
         em.getTransaction().commit();
 

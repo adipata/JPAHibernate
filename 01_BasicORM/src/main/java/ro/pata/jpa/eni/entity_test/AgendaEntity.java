@@ -1,4 +1,4 @@
-package ro.pata.jpa.eni.entity;
+package ro.pata.jpa.eni.entity_test;
 
 import javax.persistence.*;
 import java.util.Objects;
@@ -10,6 +10,7 @@ public class AgendaEntity {
     private int id;
     private String nume;
     private String telefon;
+    private AgendaDetailEntity detail;
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seqGen")
@@ -40,6 +41,16 @@ public class AgendaEntity {
 
     public void setTelefon(String telefon) {
         this.telefon = telefon;
+    }
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "detail_id", referencedColumnName = "id")
+    public AgendaDetailEntity getDetail() {
+        return detail;
+    }
+
+    public void setDetail(AgendaDetailEntity detail) {
+        this.detail = detail;
     }
 
     @Override
