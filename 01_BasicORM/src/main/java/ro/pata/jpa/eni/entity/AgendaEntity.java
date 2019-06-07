@@ -4,8 +4,8 @@ import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
-@Table(name = "agenda", schema = "adi", catalog = "")
-@SequenceGenerator(name = "seqGen")
+@Table(name = "agenda", schema = "adi")
+@SequenceGenerator(name = "seqGen", allocationSize = 1)
 public class AgendaEntity {
     private int id;
     private String nume;

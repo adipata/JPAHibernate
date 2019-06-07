@@ -23,7 +23,7 @@ public class App
 
     public static void main( String[] args )
     {
-        eni();
+        adi();
     }
 
     public static void adi(){
