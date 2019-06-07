@@ -13,6 +13,7 @@
         <class>ro.pata.jpa.eni.entity.PersonneDetailEntity</class>
         <class>ro.pata.jpa.eni.entity.TelephoneEntity</class>
         <class>ro.pata.jpa.eni.entity.VilleEntity</class>
+
         <properties>
             <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/bdd_eni"/>
             <property name="javax.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
@@ -32,14 +33,32 @@
             <property name="hibernate.show_sql" value="true"/>
             <property name="hibernate.format_sql" value="true"/>
             <property name="hibernate.use_sql_comments" value="true"/>
-            <property name="toplink.jdbc.url" value="jdbc:mysql://localhost:3306/bdd_eni"/>
-            <property name="toplink.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
-            <property name="hibernate.connection.url" value="jdbc:mysql://localhost:3306/bdd_eni"/>
-            <property name="hibernate.connection.driver_class" value="com.mysql.cj.jdbc.Driver"/>
-            <property name="openjpa.ConnectionURL" value="jdbc:mysql://localhost:3306/bdd_eni"/>
-            <property name="openjpa.ConnectionDriverName" value="com.mysql.cj.jdbc.Driver"/>
-            <property name="eclipselink.jdbc.url" value="jdbc:mysql://localhost:3306/bdd_eni"/>
-            <property name="eclipselink.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
+
+        </properties>
+    </persistence-unit>
+    <persistence-unit name="agenda" transaction-type="RESOURCE_LOCAL">
+        <class>ro.pata.jpa.eni.entity.AgendaEntity</class>
+        <properties>
+            <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/adi"/>
+            <property name="javax.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
+            <property name="javax.persistence.jdbc.user" value="root"/>
+            <property name="javax.persistence.jdbc.password" value="parizer"/>
+
+            <!-- c3p0 config http://www.hibernate.org/214.html -->
+            <property name="hibernate.c3p0.acquire_increment" value="1"></property>
+            <property name="hibernate.c3p0.idle_test_period" value="60"></property>
+            <property name="hibernate.c3p0.min_size" value="1"></property>
+            <property name="hibernate.c3p0.max_size" value="2"></property>
+            <property name="hibernate.c3p0.max_statements" value="50"></property>
+            <property name="hibernate.c3p0.timeout" value="0"></property>
+            <property name="hibernate.c3p0.acquireRetryAttempts" value="1"></property>
+            <property name="hibernate.c3p0.acquireRetryDelay" value="250"></property>
+
+            <property name="hibernate.show_sql" value="true"/>
+            <property name="hibernate.format_sql" value="true"/>
+            <property name="hibernate.use_sql_comments" value="true"/>
+
+            <property name="hibernate.hbm2ddl.auto" value="update"/>
         </properties>
     </persistence-unit>
 </persistence>
