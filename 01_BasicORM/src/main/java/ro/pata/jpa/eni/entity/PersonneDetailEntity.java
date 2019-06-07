@@ -4,11 +4,12 @@ import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
-@Table(name = "personne_detail", schema = "bdd_eni", catalog = "")
+@Table(name = "personne_detail", schema = "bdd_eni")
 public class PersonneDetailEntity {
     private int idPersonne;
     private String sexe;
     private String numSecu;
+    private PersonneEntity personne;
 
     @Id
     @Column(name = "id_personne", nullable = false)
@@ -38,6 +39,25 @@ public class PersonneDetailEntity {
 
     public void setNumSecu(String numSecu) {
         this.numSecu = numSecu;
+    }
+
+    @OneToOne
+    @JoinColumn(name = "id_personne", referencedColumnName = "id")
+    public PersonneEntity getPersonne() {
+        return personne;
+    }
+
+    public void setPersonne(PersonneEntity personne) {
+        this.personne = personne;
+    }
+
+    @Override
+    public String toString() {
+        return "PersonneDetailEntity{" +
+                "idPersonne=" + idPersonne +
+                ", sexe='" + sexe + '\'' +
+                ", numSecu='" + numSecu + '\'' +
+                '}';
     }
 
     @Override

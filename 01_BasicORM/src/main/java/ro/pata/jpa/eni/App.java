@@ -1,5 +1,7 @@
 package ro.pata.jpa.eni;
 
+import ro.pata.jpa.eni.entity.AgendaEntity;
+import ro.pata.jpa.eni.entity.PersonneDetailEntity;
 import ro.pata.jpa.eni.entity.PersonneEntity;
 
 import javax.persistence.EntityManager;
@@ -21,6 +23,31 @@ public class App
 
     public static void main( String[] args )
     {
+        eni();
+    }
+
+    public static void adi(){
+        EntityManagerFactory emf= Persistence.createEntityManagerFactory("agenda");
+        EntityManager em=emf.createEntityManager();
+
+        em.getTransaction().begin();
+        AgendaEntity person=new AgendaEntity();
+        person.setNume("Cucurel");
+        person.setTelefon("567");
+        em.persist(person);
+        em.getTransaction().commit();
+
+        List<AgendaEntity> agenda=em.createQuery("select a from AgendaEntity a",AgendaEntity.class).getResultList();
+        log.info("*** List agenda items");
+        for(AgendaEntity ai:agenda){
+            System.out.println(ai);
+        }
+
+        em.close();
+        emf.close();
+    }
+
+    public static void eni(){
         log.info("Hello World!" );
         EntityManagerFactory emf= Persistence.createEntityManagerFactory("projetEni");
         EntityManager em=emf.createEntityManager();
@@ -29,15 +56,26 @@ public class App
         p.setDateNaissance(new Date());
         p.setNom("Coco");
         p.setPrenom("Jambo");
+        System.out.println(p);
+
+
 
         em.getTransaction().begin();
         em.persist(p);
+
+        PersonneDetailEntity detail=new PersonneDetailEntity();
+        detail.setNumSecu("1234");
+        detail.setSexe("M");
+        detail.setPersonne(p);
+        detail.setIdPersonne(p.getId());
+        p.setDetail(detail);
+
         em.getTransaction().commit();
 
         List<PersonneEntity> persons= em.createQuery("select p from PersonneEntity p",PersonneEntity.class).getResultList();
 
         for(PersonneEntity pers:persons){
-            log.info(pers.toString());
+            log.info(pers.toString()+" "+pers.getDetail());
         }
 
         System.out.println(persons.size());

@@ -9,6 +9,7 @@ import java.util.Objects;
 @Table(name = "personne", schema = "bdd_eni")
 public class PersonneEntity {
     @Id
+    @Basic(optional = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
@@ -24,6 +25,9 @@ public class PersonneEntity {
     @Basic
     @Column(name = "prenom")
     private String prenom;
+
+    @OneToOne(mappedBy = "personne",cascade = CascadeType.ALL)
+    private PersonneDetailEntity detail;
 
 
     public Integer getId() {
@@ -58,6 +62,14 @@ public class PersonneEntity {
 
     public void setPrenom(String prenom) {
         this.prenom = prenom;
+    }
+
+    public PersonneDetailEntity getDetail() {
+        return detail;
+    }
+
+    public void setDetail(PersonneDetailEntity detail) {
+        this.detail = detail;
     }
 
     @Override
