@@ -43,13 +43,13 @@ public class AgendaEntity {
         this.telefon = telefon;
     }
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "detail_id", referencedColumnName = "id")
+    @OneToOne(mappedBy = "agenda",cascade = CascadeType.ALL)
     public AgendaDetailEntity getDetail() {
         return detail;
     }
 
     public void setDetail(AgendaDetailEntity detail) {
+        detail.setAgenda(this);
         this.detail = detail;
     }
 
