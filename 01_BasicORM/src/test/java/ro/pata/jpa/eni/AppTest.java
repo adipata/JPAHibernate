@@ -7,6 +7,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import ro.pata.jpa.eni.entity_test.AgendaDetailEntity;
 import ro.pata.jpa.eni.entity_test.AgendaEntity;
+import ro.pata.jpa.eni.entity_test.TelefonEntity;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -58,6 +59,23 @@ public class AppTest
             System.out.println(ai.getDetail());
         }
         assertTrue( true );
+    }
+
+    @Test
+    public void Test02(){
+        em.getTransaction().begin();
+
+        AgendaEntity agenda=em.find(AgendaEntity.class,161);
+
+        for(TelefonEntity t:agenda.getTelefonList()) log.info("Tel: "+t.getTelefon());
+
+        TelefonEntity tel=new TelefonEntity();
+        tel.setAgenda(agenda);
+        tel.setTelefon("123");
+
+        em.persist(tel);
+
+        em.getTransaction().commit();
     }
 
     @After

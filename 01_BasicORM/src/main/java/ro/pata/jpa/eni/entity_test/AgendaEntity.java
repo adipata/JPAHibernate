@@ -1,6 +1,7 @@
 package ro.pata.jpa.eni.entity_test;
 
 import javax.persistence.*;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -11,6 +12,7 @@ public class AgendaEntity {
     private String nume;
     private String telefon;
     private AgendaDetailEntity detail;
+    private List<TelefonEntity> telefonList;
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seqGen")
@@ -51,6 +53,15 @@ public class AgendaEntity {
     public void setDetail(AgendaDetailEntity detail) {
         detail.setAgenda(this);
         this.detail = detail;
+    }
+
+    @OneToMany(mappedBy = "agenda")
+    public List<TelefonEntity> getTelefonList() {
+        return telefonList;
+    }
+
+    public void setTelefonList(List<TelefonEntity> telefonList) {
+        this.telefonList = telefonList;
     }
 
     @Override
