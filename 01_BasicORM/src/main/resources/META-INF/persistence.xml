@@ -39,6 +39,7 @@
     <persistence-unit name="agenda" transaction-type="RESOURCE_LOCAL">
         <class>ro.pata.jpa.eni.entity_test.AgendaEntity</class>
         <class>ro.pata.jpa.eni.entity_test.AgendaDetailEntity</class>
+        <class>ro.pata.jpa.eni.entity_test.TelefonEntity</class>
         <properties>
             <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/adi"/>
             <property name="javax.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>

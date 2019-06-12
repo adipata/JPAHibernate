@@ -24,35 +24,7 @@ public class App
 
     public static void main( String[] args )
     {
-        adi();
-    }
 
-    public static void adi(){
-        EntityManagerFactory emf= Persistence.createEntityManagerFactory("agenda");
-        EntityManager em=emf.createEntityManager();
-
-        em.getTransaction().begin();
-
-        AgendaDetailEntity detail=new AgendaDetailEntity();
-        detail.setAddress("Cotoi");
-
-        AgendaEntity person=new AgendaEntity();
-        person.setNume("Cucurel");
-        person.setTelefon("567");
-        person.setDetail(detail);
-        em.persist(person);
-
-        em.getTransaction().commit();
-
-        List<AgendaEntity> agenda=em.createQuery("select a from AgendaEntity a",AgendaEntity.class).getResultList();
-        log.info("*** List agenda items");
-        for(AgendaEntity ai:agenda){
-            System.out.println(ai);
-            System.out.println(ai.getDetail());
-        }
-
-        em.close();
-        emf.close();
     }
 
     public static void eni(){
